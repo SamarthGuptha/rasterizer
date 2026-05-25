@@ -21,7 +21,7 @@ impl Vec3 {
             self.x*other.y-self.y*other.x,
         )
     }
-
+    pub fn zero() -> Self {Self::new(0.0,0.0,0.0)}
     pub fn length(&self) -> f32 { self.dot(self).sqrt() }
     pub fn normalize(&self) -> Self {
         let len=self.length();
