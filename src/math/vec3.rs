@@ -8,7 +8,7 @@ pub struct Vec3 {
 
 impl Vec3 {
     pub fn new(x: f32, y: f32, z: f32) -> Self {
-        Self {x,y,x}
+        Self {x,y,z}
     }
     pub fn dot(&self, other: &Self) -> f32 {
         self.x*other.x+self.y*other.y+self.z*other.z

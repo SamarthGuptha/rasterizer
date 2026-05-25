@@ -20,28 +20,6 @@ impl Framebuffer {
             self.color_buffer[index]=color;
         }
     }
-    pub fn draw_line(&mut self, mut x0:i32, mut y0:i32, x1:i32, y1:i32, color: u32) {
-        let dx = (x1-x0).abs();
-        let sx = if x0<x1{1} else {-1};
-        let dy = -(y1-y0).abs();
-        let sy = if y0<y1{1}else{-1};
-        let mut err = dx+dy;
-
-        loop {
-            self.set_pixel(x0,y0, color);
-            if x0==x1&&y0==y1{break;}
-            let e2 = 2*err;
-            if e2>=dy{
-                err+=dy;
-                x0+=sx;
-            }
-            if e2<=dx{
-                err+=dx;
-                y0+=sy;
-            }
-        }
-    }
-
     pub fn draw_filled_triangle(&mut self, mut x0: i32, mut y0: i32, mut x1: i32, mut y1: i32, mut x2: i32, mut y2: i32, color:u32){
         if y0 > y1 { std::mem::swap(&mut y0, &mut y1); std::mem::swap(&mut x0, &mut x1); }
         if y1 > y2 { std::mem::swap(&mut y1, &mut y2); std::mem::swap(&mut x1, &mut x2); }
@@ -66,7 +44,7 @@ impl Framebuffer {
         let mut curx2 = x0 as f32;
 
         for y in y0..=y1 {
-            self.draw_scanline(curx1 as i32, curx2 as i32, color);
+            self.draw_scanline(curx1 as i32, curx2 as i32, y, color);
             curx1+=invslope1;
             curx2+=invslope2;
         }
@@ -78,7 +56,7 @@ impl Framebuffer {
         let mut curx2=x2 as f32;
 
         for y in (y0..=y2).rev(){
-            self.draw_scanline(curx1 as i32, curx2 as i32, color);
+            self.draw_scanline(curx1 as i32, curx2 as i32,y, color);
             curx1-=invslope1;
             curx2-=invslope2;
         }

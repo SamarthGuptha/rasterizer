@@ -29,7 +29,7 @@ impl Mesh {
             Vec3::new(-1.0, -1.0, 1.0),
             Vec3::new(-1.0, 1.0, 1.0),
             Vec3::new(1.0, 1.0, 1.0),
-            vec3::new(1.0, -1.0, 1.0)
+            Vec3::new(1.0, -1.0, 1.0)
         ];
         let c_front=0xFF_FF0000;
         let c_back=0xFF_00FF00;
@@ -38,7 +38,7 @@ impl Mesh {
         let c_left = 0xFF_FF00FF;
         let c_right = 0xFF_00FFFF;
 
-        mesh.traingles = vec![
+        mesh.triangles = vec![
             Triangle::new(0,1,1,c_front),
             Triangle::new(0,2,3, c_front),
             Triangle::new(7,6,5,c_back),

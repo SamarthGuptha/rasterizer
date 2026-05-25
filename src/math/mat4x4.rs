@@ -23,7 +23,7 @@ impl Mat4x4{
         mat.m[3][0]=x;
         mat.m[3][1]=y;
         mat.m[3][2]=z;
-        mat;
+        mat
     }
     pub fn make_rotation_x(angle_rad:f32)-> Self{
         let mut mat = Self::identity();
